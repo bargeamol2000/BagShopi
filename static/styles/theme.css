@@ -1,0 +1,234 @@
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css");
+
+
+
+body{
+    padding: 0%;
+    margin: 0%;
+    padding-top: 80px;
+}
+
+li.list-group-item.active {
+    background-color: #167cec;
+}
+
+li.list-group-item.active:hover {
+    background-color: #167cec;
+}
+
+#header{
+    position: fixed;
+    top: 0;
+    height: 60px;
+    width: 100%;
+    background-color:#E74292;
+}
+
+.btn-primary{
+    background-color: #167cec;
+    color: #ffffff;
+}
+
+#logo{
+    height: 100%;
+    padding-top: 10px;
+    margin-left: 10px;
+    padding-bottom: 10px;
+    float: left;
+}
+
+#topmenu{
+    display: inline;
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;    
+}
+
+.menuoption{
+    height: 20px;
+    color: white;
+    font-size: medium;
+    margin-left: 10px;
+}
+
+.menuoption:hover{
+    color: black;
+    text-decoration: none;
+}
+
+#searchdiv{
+    display: inline;
+    background-color: #ffffff;
+    float: left;
+    margin-top: 15px;
+    border-radius: 10px;
+    margin-left: 30px;
+    height: 60%;
+    /*box-shadow: 5px 10px 50px #444444;*/
+}
+
+#searchinput{
+    height: 100%;
+    border: none;
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#whitesearchicon{
+    height: 100%;
+    padding: 5px;
+}
+
+
+.bags{
+    margin-top:80px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.card{
+    box-shadow: 5px 5px 20px #444444; 
+    min-width: 300px;
+    margin-top: 20px;
+}
+
+.bag{
+    max-width: 300px;
+}
+
+
+
+#logindiv{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding:2%;
+}
+
+#firstpart{
+    position: relative;
+}
+
+#secondpart{
+    padding: 0px 50px;
+    position: absolute;
+    width: 100%;
+    left: -1000px;
+}
+
+.logincard{
+    width:70%;
+    margin:auto;
+    overflow: hidden;
+    box-shadow:5px 10px 50px #000000;
+    background-color: #ffffff;
+}
+
+.loginlogo{
+    margin:30px;
+    height:25px;
+    width:120px;
+    visibility: hidden;
+}
+
+
+.loginform{
+    width:40%;
+    height:100%;
+    margin-right:5%;
+    margin-left:auto;
+}
+
+@media screen and (max-width:1100px){
+    .loginform{
+        width:70%;
+        height:100%;
+        
+    }
+
+    .sideimg{
+        display: none;
+    }
+
+
+}
+
+.loginform h6{
+    text-align:left;
+}
+
+.remb{
+    display:inline;
+    float:left;
+}
+
+.forgot{
+    display:inline;
+    float:right;
+    color:black;
+}
+
+.sideimg{
+    position:absolute;
+    height:200px;
+    width:400px;
+    top:140px;
+}
+
+.logincross{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 25px;
+    width: 25px;
+    box-shadow:5px 10px 50px #aaaaaa;
+}
+
+#confirmpass{
+    display: none;
+}
+
+.carousel-inner{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #167cec;
+    box-shadow:5px 5px 20px #167cec;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    bottom: 0px;
+    transform: translateY(100%);
+  }
+
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  #dropdown{
+    display: inline-block;
+  }
