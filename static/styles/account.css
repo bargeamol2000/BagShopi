@@ -1,8 +1,27 @@
-@import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
-@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css");
-
 .top_header{
     display: inline-block;
     color: white;
     margin-left: 20px;
+}
+
+.verifypass{
+    position: absolute;
+    left: 50%;
+    margin-left: -25%;
+    top: 0;
+    width: 50%;
+    padding: 10%;
+    display: none;
+}
+
+.verifypass img {
+    width: 300px;
+}
+
+.verifypass input{
+    width: 200px;
+}
+
+.verifypass a{
+    color: white;
 }

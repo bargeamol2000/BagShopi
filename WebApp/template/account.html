@@ -1,70 +1,122 @@
 <html>
-    <head>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-            <link rel="stylesheet" type="text/css" href="../static/styles/theme.css">
-            <link rel="stylesheet" type="text/css" href="../static/styles/account.css">
-            <!-- crypto-->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.2.0/aes.min.js"></script>
-            <!-- Testing script end-->
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-            <script src="../static/scripts/account.js"></script>
-    </head>
-    <body>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/styles/theme.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/account.css">
+    <!-- crypto-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.2.0/aes.min.js"></script>
+    <!-- Testing script end-->
 
-        <form action="account">
-            <table>
-                <tr>
-                    <th>First Name:</th>
-                    <th>Last Name:</th>
-                </tr>
-                <tr>
-                    <td><input type="text" name="fname" value="{{userid}}"></td>
-                    <td><input type="text" name="lname"></td>
-                </tr>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="../static/scripts/account.js"></script>
 
-                <tr>
-                        <th>Mobile No:</th>
-                        <th>Email:</th>
-                    </tr>
-                    <tr>
-                        <td><input type="number" name="mob"></td>
-                        <td><input type="email" name="email"></td>
-                    </tr>
-                <tr>
-                    <th>Address:</th>
-                </tr>
-                <tr>
-                    <td colspan="2""><textarea style="width: 100%;"></textarea></td>
-                </tr>
+</head>
 
-                <tr>
-                    <td colspan="2"><input type="checkbox" onchange="onPassCheck(this)"><b> Change Password</b></td>
-                </tr>
+<body>
 
-                <tr>
-                        <th>New Password:</th>
-                        <th>Confirm Password:</th>
-                    </tr>
-                    <tr>
-                        <td><input id="pass" type="password" disabled name="pass"></td>
-                        <td><input id="cpass" type="password" disabled name="cpass"></td>
-                    </tr>
-            </table>
-        </form>
+    <!-- shows loading image-->
+    <div id="loader"></div>
+
+    <form action="account">
+        <table>
+            <tr>
+                <th>First Name:</th>
+                <th>Last Name:</th>
+            </tr>
+            <tr>
+                <td><input type="text" id="fname" value=""></td>
+                <td><input type="text" id="lname"></td>
+            </tr>
+
+            <tr>
+                <th>Mobile No:</th>
+                <th>Email:</th>
+            </tr>
+            <tr>
+                <td><input type="number" id="mob"></td>
+                <td><input type="email" id="email"></td>
+            </tr>
+            <tr>
+                <th>Address:</th>
+            </tr>
+            <tr>
+                <td colspan="2""><textarea id="address" style="width: 100%;"></textarea></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><input id="passcheck" type="checkbox" onchange="onPassCheck(this)"><b> Change Password</b></td>
+            </tr>
+
+            <tr>
+                <th>New Password:</th>
+                <th>Confirm Password:</th>
+            </tr>
+            <tr>
+                <td><input id="pass" type="password" disabled name="pass"></td>
+                <td><input id="cpass" type="password" disabled name="cpass"></td>
+            </tr>
+        </table>
+    </form>
 
 
-        <!--Top header-->
+    <!--Top header-->
 
     <div id="header">
-            <img id="logo" src="../static/icons/logo.png">
-            <div id="topmenu">
-                <a class="menuoption" href="/save"><b>Save</b></a>
-            </div>
-            <h2 class="top_header" >Account Details</h2>
+        <img id="logo" src="../static/icons/logo.png">
+        <div id="topmenu">
+            <a class="menuoption" href="javascript:$('.verifypass').fadeIn();"><b>Save</b></a>
         </div>
-    </body>
+        <h2 class="top_header">Account Details</h2>
+    </div>
+
+    <div class="card verifypass">
+        <center>
+                <img src="../static/imgs/passwordillust.png"/>
+                <label>Enter Password To Save Changes</label><br>
+                <input type="password" id="passin" class="form-control"><br>
+                <a class="btn btn-primary" href="javascript:saveAccount()">Save</a>
+                <a class="btn btn-danger" onclick="javascript:$('.verifypass').fadeOut();">Cancel</a>
+        </center>
+    </div>
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-analytics.js"></script>
+
+    <!-- All Firebase SDKs-->
+    <!-- Add the entire Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCITuIJ7DmCHOAS5n6d-0ahkUjJXRkEN1c",
+            authDomain: "bagshopi.firebaseapp.com",
+            databaseURL: "https://bagshopi.firebaseio.com",
+            projectId: "bagshopi",
+            storageBucket: "bagshopi.appspot.com",
+            messagingSenderId: "356246138205",
+            appId: "1:356246138205:web:30cb41e185af8a729d4cb4",
+            measurementId: "G-3F90KW4J8F"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        // Get a reference to the database service
+        var database = firebase.database();
+
+        setUserData();
+    </script>
+
+</body>
+
 </html>
