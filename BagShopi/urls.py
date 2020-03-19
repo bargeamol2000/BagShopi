@@ -27,4 +27,6 @@ urlpatterns = [
     path('search/',views.search),
     path('bag/',views.bag),
     path('checkout/',views.checkout),
+    path('myorders/',views.myorders),
+    path('order/',views.order),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

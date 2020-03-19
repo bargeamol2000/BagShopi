@@ -21,45 +21,47 @@
     <!-- shows loading image-->
     <div id="loader"></div>
 
-    <form action="account">
-        <table>
-            <tr>
-                <th>First Name:</th>
-                <th>Last Name:</th>
-            </tr>
-            <tr>
-                <td><input type="text" id="fname" value=""></td>
-                <td><input type="text" id="lname"></td>
-            </tr>
-
-            <tr>
-                <th>Mobile No:</th>
-                <th>Email:</th>
-            </tr>
-            <tr>
-                <td><input type="number" id="mob"></td>
-                <td><input type="email" id="email"></td>
-            </tr>
-            <tr>
-                <th>Address:</th>
-            </tr>
-            <tr>
-                <td colspan="2""><textarea id="address" style="width: 100%;"></textarea></td>
-            </tr>
-
-            <tr>
-                <td colspan="2"><input id="passcheck" type="checkbox" onchange="onPassCheck(this)"><b> Change Password</b></td>
-            </tr>
-
-            <tr>
-                <th>New Password:</th>
-                <th>Confirm Password:</th>
-            </tr>
-            <tr>
-                <td><input id="pass" type="password" disabled name="pass"></td>
-                <td><input id="cpass" type="password" disabled name="cpass"></td>
-            </tr>
-        </table>
+    <form id="accform" action="account">
+        <div class="form-group">
+            <table>
+                <tr>
+                    <th>First Name:</th>
+                    <th>Last Name:</th>
+                </tr>
+                <tr>
+                    <td><input  class="form-control" type="text" id="fname" value=""></td>
+                    <td><input class="form-control" type="text" id="lname"></td>
+                </tr>
+    
+                <tr>
+                    <th>Mobile No:</th>
+                    <th>Email:</th>
+                </tr>
+                <tr>
+                    <td><input class="form-control" type="number" id="mob"></td>
+                    <td><input class="form-control" type="email" id="email"></td>
+                </tr>
+                <tr>
+                    <th>Address:</th>
+                </tr>
+                <tr>
+                    <td colspan="2""><textarea class="form-control" id="address" style="width: 100%;"></textarea></td>
+                </tr>
+    
+                <tr>
+                    <td colspan="2"><input id="passcheck" type="checkbox" onchange="onPassCheck(this)"><b> Change Password</b></td>
+                </tr>
+    
+                <tr>
+                    <th>New Password:</th>
+                    <th>Confirm Password:</th>
+                </tr>
+                <tr>
+                    <td><input class="form-control" id="pass" type="password" disabled name="pass"></td>
+                    <td><input class="form-control" id="cpass" type="password" disabled name="cpass"></td>
+                </tr>
+            </table>
+        </div>
     </form>
 
 

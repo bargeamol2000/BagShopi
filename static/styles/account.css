@@ -25,3 +25,17 @@
 .verifypass a{
     color: white;
 }
+
+table{
+    margin: auto;
+}
+
+th{
+    margin: 20px;
+    padding: 10px;
+}
+
+td{
+    margin: 20px;
+    padding: 10px;
+}

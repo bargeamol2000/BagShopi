@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../static/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../static/styles/checkout.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/order.css">
     <!-- crypto-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.2.0/aes.min.js"></script>
     <!-- Testing script end-->
@@ -15,7 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="../static/scripts/theme.js"></script>
     <script src="../static/scripts/home.js"></script>
-    <script src="../static/scripts/checkout.js"></script>
+    <script src="../static/scripts/order.js"></script>
 </head>
 
 <body>
@@ -28,7 +28,6 @@
             <td rowspan="2" style="vertical-align: top;">
                 <!--items-->
                 <div id="items" class="items card">
-                    <h1 class="notfoundmsg">No items found</h1>
                 </div>
             </td>
             <td>
@@ -71,9 +70,8 @@
         <tr>
             <td id="buttonstd">
                 <div class="card">
-                    <a class="btn btn-success btn-lg" href="javascript:placeOrder();" style="color: white; margin: 5px;">Place Order</a>
-                    <a class="btn btn-danger btn-lg" href="javascript:clearCart();"
-                        style="color: white; margin: 5px;">Remove All Items</a>
+                    <a class="btn btn-danger btn-lg" href="javascript:cancelOrder();"
+                        style="color: white; margin: 5px;">Cancel Order</a>
                 </div>
             </td>
         </tr>

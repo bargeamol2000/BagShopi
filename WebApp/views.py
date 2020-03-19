@@ -32,6 +32,12 @@ def account(request):
 def checkout(request):
     return render(request, "checkout.html", {})
 
+def myorders(request):
+    return render(request, "myorders.html", {})
+
+def order(request):
+    return render(request, "order.html", {})
+
 def bag(request):
     res= algo_index.search(
         '',

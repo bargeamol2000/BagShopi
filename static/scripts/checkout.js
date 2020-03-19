@@ -10,12 +10,19 @@ function placeOrder(){
         database.ref('orders').child(key).set(
             {
                 uid: sessionStorage.getItem("uid"),
-                oreder: JSON.parse(sessionStorage.getItem("cart")),
+                order: JSON.parse(sessionStorage.getItem("cart")),
+                price:parseInt($("#itemsPrice").text().replace('Rs ','')),
                 timestamp : new Date().getTime()
               }
         );
 
-        database.ref('users').child(sessionStorage.getItem("uid")).child("orders").child(key).set(key);
+        database.ref('users').child(sessionStorage.getItem("uid")).child("orders").child(key).set(
+            {
+            orderId:key,
+            price:parseInt($("#itemsPrice").text().replace('Rs ','')),
+            timestamp : new Date().getTime()
+        }
+        );
 
         clearCart();
 
@@ -49,6 +56,9 @@ function remove(id){
 }
 function loadContent() {
     var cart=JSON.parse(sessionStorage.getItem("cart"));
+    if(cart==null){
+        $(".notfoundmsg").show();
+    }
     var itemsprice=0;
     var itemsquantity=0;
     for (var item in cart) {
