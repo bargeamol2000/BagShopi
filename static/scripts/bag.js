@@ -6,7 +6,7 @@ function addToCart(obj,id){
 
     if(cart[id]!=null){
         cart[id]["quantity"]=cart[id]["quantity"]+1;
-        alert("It was already in cart so increased the quantity");
+        alert("It was already in cart so increased the quantity ("+cart[id]["quantity"]+" Items)");
     }
     else{
         obj["quantity"]=1;

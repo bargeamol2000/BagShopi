@@ -165,6 +165,11 @@
         // Get a reference to the database service
         var database = firebase.database();
 
+        //sets total items in cart checkout_btn
+        var cart=JSON.parse(sessionStorage.getItem("cart"));
+        if(cart!=null)
+            $("#checkout_btn b").text("Cart ("+Object.keys(cart).length+")");
+
 
         //check previous user login from session
         if (sessionStorage.getItem("uid") != null) {

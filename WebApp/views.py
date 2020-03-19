@@ -29,6 +29,9 @@ def search(request):
 def account(request):
     return render(request, "account.html", {})
 
+def checkout(request):
+    return render(request, "checkout.html", {})
+
 def bag(request):
     res= algo_index.search(
         '',

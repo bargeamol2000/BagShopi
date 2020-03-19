@@ -2,9 +2,11 @@
 
 <head>
 
+    <script>var True = true;</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../static/styles/theme.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/checkout.css">
     <!-- crypto-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.2.0/aes.min.js"></script>
     <!-- Testing script end-->
@@ -13,77 +15,69 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="../static/scripts/theme.js"></script>
     <script src="../static/scripts/home.js"></script>
+    <script src="../static/scripts/checkout.js"></script>
 </head>
 
 <body>
 
     <div id="loader"></div>
 
-    <!--Sliding images coursole-->
-
-    <div class="container">
-        <h2>Our Top Brands</h2>
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Wrapper for slides -->
-            <center>
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img src="../static/imgs/topbrands/1.jpeg" alt="Los Angeles" style="width:80%;">
-                    </div>
-
-                    <div class="item">
-                        <img src="../static/imgs/topbrands/2.jpeg" alt="Chicago" style="width:80%;">
-                    </div>
-
-                    <div class="item">
-                        <img src="../static/imgs/topbrands/3.jpeg" alt="New york" style="width:80%;">
-                    </div>
-
-                    <div class="item">
-                        <img src="../static/imgs/topbrands/4.jpeg" alt="Chicago" style="width:80%;">
-                    </div>
-
-                    <div class="item">
-                        <img src="../static/imgs/topbrands/5.jpeg" alt="Chicago" style="width:80%;">
-                    </div>
-
-                    <div class="item">
-                        <img src="../static/imgs/topbrands/6.jpeg" alt="Chicago" style="width:80%;">
-                    </div>
-
-                    <div class="item">
-                        <img src="../static/imgs/topbrands/7.jpeg" alt="Chicago" style="width:80%;">
-                    </div>
+    <!-- order table -->
+    <table id="maintable">
+        <tr>
+            <td rowspan="2" style="vertical-align: top;">
+                <!--items-->
+                <div id="items" class="items card">
                 </div>
-            </center>
-
-
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-
-    <!--Bags-->
-
-    <div class="card-deck bags">
-        {% for x in cards %}
-        <div class="card bag">
-                <img class="card-img-top bagimg" src="{{x.img}}" alt="Card image">
-                <div class="card-body d-flex flex-column">
-                    <h4 class="card-title">{{x.name}}</h4>
-                    <p class="card-text">Rs {{x.price}}</p>
-                    <a href="../bag/?id={{x.objectID}}" class="btn btn-primary mt-auto">Buy Now</a>
+            </td>
+            <td>
+                <!--Total price-->
+                <div class="totalprice card">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <h2><b>Price Details</b></h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4><b id="itemsPriceLabel"><!--Price (3 Items):--></b></h4>
+                            </td>
+                            <td colspan="2">
+                                <h4 id="itemsPrice"><!--Rs 435345--></h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4><b>Delivery Fee:</b></h4>
+                            </td>
+                            <td colspan="2">
+                                <h4>Rs 40</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4><b>Total Price:</b></h4>
+                            </td>
+                            <td colspan="2">
+                                <h4 id="totalPrice"><!--Rs 345235--></h4>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-            </div>        
-        {% endfor %}
-    </div>
+            </td>
+        </tr>
+        <tr>
+            <td id="buttonstd">
+                <div class="card">
+                    <a class="btn btn-success btn-lg" href="javascript:placeOrder();" style="color: white; margin: 5px;">Place Order</a>
+                    <a class="btn btn-danger btn-lg" href="javascript:clearCart();"
+                        style="color: white; margin: 5px;">Remove All Items</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+
 
     <!--Top header-->
 
@@ -99,14 +93,13 @@
                     <a href="javascript:logout();">Logout</a>
                 </div>
             </div>
-            <a class="menuoption" id="checkout_btn" href="../checkout"><b>Cart</b></a>
         </div>
         <div id="searchdiv">
-            <form action="../search" id="searchform">
-            <input id="searchinput" name="query" placeholder="Search for bags">
-            <a href="#">
-                <img id="whitesearchicon" onclick="$( '#searchform' ).submit()" src="../static/icons/search.png">
-            </a>
+            <form action="search" id="searchform">
+                <input id="searchinput" name="query" placeholder="Search for bags">
+                <a href="#">
+                    <img id="whitesearchicon" onclick="$( '#searchform' ).submit()" src="../static/icons/search.png">
+                </a>
             </form>
         </div>
     </div>
@@ -213,28 +206,7 @@
         // Get a reference to the database service
         var database = firebase.database();
 
-        //sets total items in cart checkout_btn
-        var cart=JSON.parse(sessionStorage.getItem("cart"));
-        if(cart!=null)
-            $("#checkout_btn b").text("Cart ("+Object.keys(cart).length+")");
-
-        //check previous user login from session
-        if (sessionStorage.getItem("uid") != null) {
-
-            database.ref('/users/' + sessionStorage.getItem("uid")).once('value').then(function (snapshot) {
-                var fname = snapshot.val().fname;
-                var lname = snapshot.val().lname;
-
-                var accountoption = document.getElementById("accountoption");
-                accountoption.href = "javascript:alert('still in developement')";
-                accountoption.innerHTML = "<b>" + fname + " " + lname + "</b>";
-
-                document.getElementById("dropdown").className = "dropdown";
-                $("#loader").remove();
-            });
-        }
-        else
-            $("#loader").remove();
+        loadContent();
     </script>
 </body>
 
